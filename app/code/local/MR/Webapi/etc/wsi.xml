@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:typens="urn:{{var wsdl.name}}"
+                  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  name="{{var wsdl.name}}"
+                  targetNamespace="urn:{{var wsdl.name}}">
+    <wsdl:types>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:{{var wsdl.name}}">
+            <!-- Fix for magento 1.6.x -->
+            <xsd:complexType name="associativeMultiArray">
+                <xsd:sequence>
+                    <xsd:element minOccurs="0" maxOccurs="unbounded" name="complexObjectArray" type="typens:associativeMultiEntity" />
+                </xsd:sequence>
+            </xsd:complexType>
+            <!-- // Fix for magento 1.6.x -->
+
+            <xsd:complexType name="pager">
+                <xsd:sequence>
+                    <xsd:element name="page" type="xsd:string" minOccurs="0" />
+                    <xsd:element name="pageSize" type="xsd:string" minOccurs="0" />
+                </xsd:sequence>
+            </xsd:complexType>
+
+            <!--  Newsletters Subscriber -->
+            <xsd:complexType name="newsletterSubscriberEntity">
+                <xsd:sequence>
+                    <xsd:element name="subscriber_id" type="xsd:string" minOccurs="0" />
+                    <xsd:element name="store_id" type="xsd:string" minOccurs="0" />
+                    <xsd:element name="change_status_at" type="xsd:string" minOccurs="0" />
+                    <xsd:element name="customer_id" type="xsd:string" minOccurs="0" />
+                    <xsd:element name="subscriber_email" type="xsd:string" minOccurs="0" />
+                    <xsd:element name="subscriber_status" type="xsd:string" minOccurs="0" />
+                    <xsd:element name="subscriber_confirm_code" type="xsd:string" minOccurs="0" />
+                </xsd:sequence>
+            </xsd:complexType>
+
+            <xsd:complexType name="newsletterSubscriberEntityArray">
+                <xsd:sequence>
+                    <xsd:element minOccurs="0" maxOccurs="unbounded" name="complexObjectArray" type="typens:newsletterSubscriberEntity" />
+                </xsd:sequence>
+            </xsd:complexType>
+
+            <!--  Newsletters Subscriber -->
+
+            <!-- Newsletter Subscriber -->
+            <xsd:element name="newsletterSubscriberListRequestParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="sessionId" type="xsd:string" />
+                        <xsd:element minOccurs="0" maxOccurs="1" name="filters" type="typens:filters" />
+                        <xsd:element minOccurs="0" maxOccurs="1" name="pager" type="typens:pager" />
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+
+            <xsd:element name="newsletterSubscriberListResponseParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="result" type="typens:newsletterSubscriberEntityArray" />
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+
+            <xsd:element name="newsletterSubscriberCreateRequestParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="sessionId" type="xsd:string" />
+                        <xsd:element minOccurs="1" maxOccurs="1" name="subscriberData" type="typens:newsletterSubscriberEntity" />
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+
+            <xsd:element name="newsletterSubscriberCreateResponseParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="result" type="typens:newsletterSubscriberEntity" />
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+
+            <xsd:element name="newsletterSubscriberUpdateRequestParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="sessionId" type="xsd:string" />
+                        <xsd:element minOccurs="1" maxOccurs="1" name="subscriberId" type="xsd:int" />
+                        <xsd:element minOccurs="1" maxOccurs="1" name="subscriberData" type="typens:newsletterSubscriberEntity" />
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+
+            <xsd:element name="newsletterSubscriberUpdateResponseParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="result" type="typens:newsletterSubscriberEntity" />
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+
+            <xsd:element name="newsletterSubscriberSubscribeEmailRequestParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="sessionId" type="xsd:string" />
+                        <xsd:element minOccurs="1" maxOccurs="1" name="email" type="xsd:string" />
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+
+            <xsd:element name="newsletterSubscriberSubscribeEmailResponseParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="result" type="typens:newsletterSubscriberEntity" />
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+
+            <xsd:element name="newsletterSubscriberUnsubscribeRequestParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="sessionId" type="xsd:string" />
+                        <xsd:element minOccurs="1" maxOccurs="1" name="email" type="xsd:string" />
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+
+            <xsd:element name="newsletterSubscriberUnsubscribeResponseParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="result" type="xsd:boolean" />
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <!-- /Newsletter Subscriber -->
+
+        </xsd:schema>
+    </wsdl:types>
+
+    <!--  Newsletters Subscriber -->
+    <wsdl:message name="newsletterSubscriberListRequest">
+        <wsdl:part name="parameters" element="typens:newsletterSubscriberListRequestParam" />
+    </wsdl:message>
+    <wsdl:message name="newsletterSubscriberListResponse">
+        <wsdl:part name="parameters" element="typens:newsletterSubscriberListResponseParam" />
+    </wsdl:message>
+
+    <wsdl:message name="newsletterSubscriberCreateRequest">
+        <wsdl:part name="parameters" element="typens:newsletterSubscriberCreateRequestParam" />
+    </wsdl:message>
+    <wsdl:message name="newsletterSubscriberCreateResponse">
+        <wsdl:part name="parameters" element="typens:newsletterSubscriberCreateResponseParam" />
+    </wsdl:message>
+
+    <wsdl:message name="newsletterSubscriberUpdateRequest">
+        <wsdl:part name="parameters" element="typens:newsletterSubscriberUpdateRequestParam" />
+    </wsdl:message>
+    <wsdl:message name="newsletterSubscriberUpdateResponse">
+        <wsdl:part name="parameters" element="typens:newsletterSubscriberUpdateResponseParam" />
+    </wsdl:message>
+
+    <wsdl:message name="newsletterSubscriberSubscribeEmailRequest">
+        <wsdl:part name="parameters" element="typens:newsletterSubscriberSubscribeEmailRequestParam" />
+    </wsdl:message>
+    <wsdl:message name="newsletterSubscriberSubscribeResponse">
+        <wsdl:part name="parameters" element="typens:newsletterSubscriberSubscribeEmailResponseParam" />
+    </wsdl:message>
+
+    <wsdl:message name="newsletterSubscriberUnsubscribeRequest">
+        <wsdl:part name="parameters" element="typens:newsletterSubscriberUnsubscribeRequestParam" />
+    </wsdl:message>
+    <wsdl:message name="newsletterSubscriberUnsubscribeResponse">
+        <wsdl:part name="parameters" element="typens:newsletterSubscriberUnsubscribeResponseParam" />
+    </wsdl:message>
+    <!--  Newsletters Subscriber -->
+
+    <wsdl:portType name="{{var wsdl.handler}}PortType">
+
+        <wsdl:operation name="newsletterSubscriberList">
+            <wsdl:documentation>Newsletter subscriber collection</wsdl:documentation>
+            <wsdl:input message="typens:newsletterSubscriberListRequest"/>
+            <wsdl:output message="typens:newsletterSubscriberListResponse"/>
+        </wsdl:operation>
+
+        <wsdl:operation name="newsletterSubscriberCreate">
+            <wsdl:documentation>Create newsletter subscriber</wsdl:documentation>
+            <wsdl:input message="typens:newsletterSubscriberCreateRequest"/>
+            <wsdl:output message="typens:newsletterSubscriberCreateResponse"/>
+        </wsdl:operation>
+
+        <wsdl:operation name="newsletterSubscriberUpdate">
+            <wsdl:documentation>Update newsletter subscriber</wsdl:documentation>
+            <wsdl:input message="typens:newsletterSubscriberUpdateRequest"/>
+            <wsdl:output message="typens:newsletterSubscriberUpdateResponse"/>
+        </wsdl:operation>
+
+        <wsdl:operation name="newsletterSubscriberSubscribeEmail">
+            <wsdl:documentation>Newsletter subscriber - Subscribe email</wsdl:documentation>
+            <wsdl:input message="typens:newsletterSubscriberSubscribeEmailRequest"/>
+            <wsdl:output message="typens:newsletterSubscriberSubscribeResponse"/>
+        </wsdl:operation>
+
+        <wsdl:operation name="newsletterSubscriberUnsubscribe">
+            <wsdl:documentation>Unsubscribe newsletter subscriber</wsdl:documentation>
+            <wsdl:input message="typens:newsletterSubscriberUnsubscribeRequest"/>
+            <wsdl:output message="typens:newsletterSubscriberUnsubscribeResponse"/>
+        </wsdl:operation>
+
+    </wsdl:portType>
+
+    <wsdl:binding name="{{var wsdl.handler}}Binding" type="typens:{{var wsdl.handler}}PortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+        <wsdl:operation name="newsletterSubscriberList">
+            <soap:operation soapAction=""/>
+            <wsdl:input>
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="newsletterSubscriberCreate">
+            <soap:operation soapAction=""/>
+            <wsdl:input>
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="newsletterSubscriberUpdate">
+            <soap:operation soapAction=""/>
+            <wsdl:input>
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="newsletterSubscriberSubscribeEmail">
+            <soap:operation soapAction=""/>
+            <wsdl:input>
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="newsletterSubscriberUnsubscribe">
+            <soap:operation soapAction=""/>
+            <wsdl:input>
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+
+    </wsdl:binding>
+</wsdl:definitions>

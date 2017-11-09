@@ -1,0 +1,134 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    Mage
+ * @package     Mage_Checkout
+ * @copyright   Copyright (c) 2012 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+-->
+<config>
+    <api>
+        <resources>
+            <newsletter_subscriber translate="title" module="webapi_api">
+                <model>webapi/newsletter_subscriber_api</model>
+                <title>Newsletter Subscriber</title>
+                <acl>webapi/newsletter_subscriber</acl>
+                <methods>
+                    <list translate="title" module="webapi_api">
+                        <title>Subscribers collection</title>
+                        <method>items</method>
+                        <acl>webapi/newsletter_subscriber/list</acl>
+                    </list>
+                    <create translate="title" module="webapi_api">
+                        <title>Create newsletter subscriber</title>
+                        <acl>webapi/newsletter_subscriber/create</acl>
+                    </create>
+                    <update translate="title" module="webapi_api">
+                        <title>Update newsletter subscriber data</title>
+                        <acl>webapi/newsletter_subscriber/update</acl>
+                    </update>
+                    <subscribeEmail translate="title" module="webapi_api">
+                        <title>Newsletter subscriber - Subscribe email</title>
+                        <acl>webapi/newsletter_subscriber/subscribe_email</acl>
+                    </subscribeEmail>
+                    <unsubscribe translate="title" module="webapi_api">
+                        <title>Unsubscribe Newsletter subscriber</title>
+                        <acl>webapi/newsletter_subscriber/unsubscribe</acl>
+                    </unsubscribe>
+                </methods>
+                <faults module="customer">
+                    <data_invalid>
+                        <code>100</code>
+                        <message>Invalid newsletter subscriber data. Details in error message.</message>
+                    </data_invalid>
+                    <filters_invalid>
+                        <code>101</code>
+                        <message>Invalid filters specified. Details in error message.</message>
+                    </filters_invalid>
+                    <not_exists>
+                        <code>102</code>
+                        <message>Newsletter subscriber not exists.</message>
+                    </not_exists>
+                    <email_already_subscribed>
+                        <code>103</code>
+                        <message>Email already subscribed.</message>
+                    </email_already_subscribed>
+                    <customer_already_subscribed>
+                        <code>104</code>
+                        <message>Customer already subscribed.</message>
+                    </customer_already_subscribed>
+                    <email_is_empty>
+                        <code>105</code>
+                        <message>Newsletter subscriber email is required.</message>
+                    </email_is_empty>
+                    <customer_not_found>
+                        <code>106</code>
+                        <message>Customer not found.</message>
+                    </customer_not_found>
+                    <subscriber_customer_change_forbidden>
+                        <code>107</code>
+                        <message>Newsletter subscribe Customer change is forbidden.</message>
+                    </subscriber_customer_change_forbidden>
+                </faults>
+            </newsletter_subscriber>
+        </resources>
+        <rest>
+            <mapping>
+                <newsletter_subscriber>
+                    <get><method>list</method></get>
+                </newsletter_subscriber>
+            </mapping>
+        </rest>
+        <acl>
+            <resources>
+                <webapi translate="title" module="webapi">
+                    <title>Newsletter Subscriber</title>
+                    <sort_order>5</sort_order>
+                    <newsletter_subscriber translate="title" module="webapi">
+                        <title>Newsletter Subscriber</title>
+                        <list translate="title" module="webapi">
+                            <title>Newsletter Subscriber List</title>
+                        </list>
+                        <create translate="title" module="webapi">
+                            <title>Newsletter Subscriber Create</title>
+                        </create>
+                        <update translate="title" module="webapi">
+                            <title>Newsletter Subscriber Update</title>
+                        </update>
+                        <unsubscribe translate="title" module="webapi">
+                            <title>Newsletter Subscriber Unsubscribe</title>
+                        </unsubscribe>
+                        <subscribe_email translate="title" module="webapi">
+                            <title>Newsletter Subscriber Subscribe Email</title>
+                        </subscribe_email>
+                    </newsletter_subscriber>
+                    
+                </webapi>
+            </resources>
+        </acl>
+        <v2>
+            <resources_function_prefix>
+                <newsletter_subscriber>newsletterSubscriber</newsletter_subscriber>
+            </resources_function_prefix>
+        </v2>
+    </api>
+</config>

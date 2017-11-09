@@ -1,0 +1,173 @@
+<?xml version="1.0"?>
+<!--
+/**
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is published at http://opensource.org/licenses/osl-3.0.php.
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magecore.com so we can send you a copy immediately
+ *
+ * @category Webapi
+ * @package Api
+ * @license http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
+ */
+-->
+<definitions xmlns:typens="urn:{{var wsdl.name}}" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+             xmlns="http://schemas.xmlsoap.org/wsdl/"
+             name="{{var wsdl.name}}" targetNamespace="urn:{{var wsdl.name}}">
+    <types>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:Magento">
+            <import namespace="http://schemas.xmlsoap.org/soap/encoding/" schemaLocation="http://schemas.xmlsoap.org/soap/encoding/" />
+            <!-- Fix for magento 1.6.x -->
+            <complexType name="associativeMultiArray">
+                <complexContent>
+                    <restriction base="soapenc:Array">
+                        <attribute ref="soapenc:arrayType" wsdl:arrayType="typens:associativeMultiEntity[]" />
+                    </restriction>
+                </complexContent>
+            </complexType>
+            <!-- // Fix for magento 1.6.x -->
+            <complexType name="pager">
+                <all>
+                    <element name="page" type="xsd:string" minOccurs="0" />
+                    <element name="pageSize" type="xsd:string" minOccurs="0" />
+                </all>
+            </complexType>
+
+            <!--  Newsletters Subscriber -->
+            <complexType name="newsletterSubscriberEntity">
+                <all>
+                    <element name="subscriber_id" type="xsd:string" minOccurs="0" />
+                    <element name="store_id" type="xsd:string" minOccurs="0" />
+                    <element name="change_status_at" type="xsd:string" minOccurs="0" />
+                    <element name="customer_id" type="xsd:string" minOccurs="0" />
+                    <element name="subscriber_email" type="xsd:string" minOccurs="0" />
+                    <element name="subscriber_status" type="xsd:string" minOccurs="0" />
+                    <element name="subscriber_confirm_code" type="xsd:string" minOccurs="0" />
+                </all>
+            </complexType>
+            <complexType name="newsletterSubscriberEntityArray">
+                <complexContent>
+                    <restriction base="soapenc:Array">
+                        <attribute ref="soapenc:arrayType" wsdl:arrayType="typens:newsletterSubscriberEntity[]" />
+                    </restriction>
+                </complexContent>
+            </complexType>
+            <!--  Newsletters Subscriber -->
+        </schema>
+    </types>
+
+    <portType name="{{var wsdl.handler}}PortType">
+
+        <operation name="newsletterSubscriberList">
+            <documentation>Newsletter subscriber collection</documentation>
+            <input message="typens:newsletterSubscriberListRequest"/>
+            <output message="typens:newsletterSubscriberListResponse"/>
+        </operation>
+
+        <operation name="newsletterSubscriberCreate">
+            <documentation>Create newsletter subscriber</documentation>
+            <input message="typens:newsletterSubscriberCreateRequest" />
+            <output message="typens:newsletterSubscriberCreateResponse" />
+        </operation>
+
+        <operation name="newsletterSubscriberUpdate">
+            <documentation>Update newsletter subscriber</documentation>
+            <input message="typens:newsletterSubscriberUpdateRequest" />
+            <output message="typens:newsletterSubscriberUpdateResponse" />
+        </operation>
+
+        <operation name="newsletterSubscriberSubscribeEmail">
+            <documentation>Newsletter subscriber - Subscribe email</documentation>
+            <input message="typens:newsletterSubscriberSubscribeEmailRequest" />
+            <output message="typens:newsletterSubscriberSubscribeResponse" />
+        </operation>
+
+        <operation name="newsletterSubscriberUnsubscribe">
+            <documentation>Unsubscribe newsletter subscriber</documentation>
+            <input message="typens:newsletterSubscriberUnsubscribeRequest" />
+            <output message="typens:newsletterSubscriberUnsubscribeResponse" />
+        </operation>
+
+    </portType>
+
+    <binding name="{{var wsdl.handler}}Binding" type="typens:{{var wsdl.handler}}PortType">
+        <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="newsletterSubscriberList">
+            <soap:operation soapAction="urn:{{var wsdl.handler}}Action"/>
+            <input><soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></input>
+            <output><soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></output>
+        </operation>
+        <operation name="newsletterSubscriberCreate">
+            <soap:operation soapAction="urn:{{var wsdl.handler}}Action" />
+            <input><soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" /></input>
+            <output><soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" /></output>
+        </operation>
+        <operation name="newsletterSubscriberUpdate">
+            <soap:operation soapAction="urn:{{var wsdl.handler}}Action" />
+            <input><soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" /></input>
+            <output><soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" /></output>
+        </operation>
+        <operation name="newsletterSubscriberSubscribeEmail">
+            <soap:operation soapAction="urn:{{var wsdl.handler}}Action" />
+            <input><soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" /></input>
+            <output><soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" /></output>
+        </operation>
+        <operation name="newsletterSubscriberUnsubscribe">
+            <soap:operation soapAction="urn:{{var wsdl.handler}}Action" />
+            <input><soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" /></input>
+            <output><soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" /></output>
+        </operation>
+
+    </binding>
+
+    <!--  Newsletters Subscriber -->
+    <message name="newsletterSubscriberListRequest">
+        <part name="sessionId" type="xsd:string" />
+        <part name="filters" type="typens:filters" />
+        <part name="pager" type="typens:pager" />
+    </message>
+    <message name="newsletterSubscriberListResponse">
+        <part name="result" type="typens:newsletterSubscriberEntityArray" />
+    </message>
+
+    <message name="newsletterSubscriberCreateRequest">
+        <part name="sessionId" type="xsd:string" />
+        <part name="subscriberData" type="typens:newsletterSubscriberEntity" />
+    </message>
+    <message name="newsletterSubscriberCreateResponse">
+        <part name="result" type="typens:newsletterSubscriberEntity" />
+    </message>
+
+    <message name="newsletterSubscriberUpdateRequest">
+        <part name="sessionId" type="xsd:string" />
+        <part name="subscriberId" type="xsd:int" />
+        <part name="subscriberData" type="typens:newsletterSubscriberEntity" />
+    </message>
+    <message name="newsletterSubscriberUpdateResponse">
+        <part name="result" type="typens:newsletterSubscriberEntity" />
+    </message>
+
+    <message name="newsletterSubscriberSubscribeEmailRequest">
+        <part name="sessionId" type="xsd:string" />
+        <part name="email" type="xsd:string" />
+    </message>
+    <message name="newsletterSubscriberSubscribeResponse">
+        <part name="result" type="typens:newsletterSubscriberEntity" />
+    </message>
+
+    <message name="newsletterSubscriberUnsubscribeRequest">
+        <part name="sessionId" type="xsd:string" />
+        <part name="email" type="xsd:string" />
+    </message>
+    <message name="newsletterSubscriberUnsubscribeResponse">
+        <part name="result" type="xsd:boolean" />
+    </message>
+    <!--  Newsletters Subscriber -->
+
+</definitions>

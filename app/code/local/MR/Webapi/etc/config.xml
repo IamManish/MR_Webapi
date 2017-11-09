@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<config>
+  <modules>
+    <MR_Webapi>
+      <version>0.1.0</version>
+    </MR_Webapi>
+  </modules>
+  <global>
+    <helpers>
+      <webapi>
+        <class>MR_Webapi_Helper</class>
+      </webapi>
+    </helpers>
+    <models>
+            <webapi>
+                <class>MR_Webapi_Model</class>
+            </webapi>
+    </models>
+  </global>
+</config> 
